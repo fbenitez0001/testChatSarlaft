@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asegurabilidad</title>
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <!-- Bienvenida e INTRO -->
+    <form id="form">
+      <div class="sección-inicio">
+        <cf-robot-message
+          cf-questions="¡Hola! Estamos más cerca de expedir tu póliza de Plan Crédito Protegido."
+        ></cf-robot-message>
+        <cf-robot-message
+          cf-questions="Necesitamos una información financiera que nos exige SURA"
+        ></cf-robot-message>
+        <cf-robot-message
+          cf-questions="Esto es parte del SARLAFT, o conocimiento de cliente para la prevención de lavado de activo"
+        ></cf-robot-message>
+
+        <input
+          cf-questions="¿Comenzamos?"
+          cf-label="Adelante"
+          type="radio"
+          value="0"
+        />
+      </div>
+      <div class="sección-datos personales">
+        <!-- Datos de Inicio Nombre y Apellido -->
+        <input
+          type="text"
+          name="Nombre"
+          cf-questions="Cual es tu primer nombre?"
+          id="Nombre"
+        />
+        <input
+          type="text"
+          name="Apellido"
+          cf-questions="Cual es tu apellido?"
+          id="Apellido"
+        />
+        <label for="fechaNacimiento">Fecha de Nacimiento</label>
+        <input
+          cf-questions="¿Cuál es tu fecha de nacimiento?"
+          type="date"
+          class="form-control"
+          name="fechaNacimiento"
+          id="fechaNacimiento"
+        />
+        <fieldset cf-questions="¿Naciste en Colombia??">
+          <label for="colombia-yes"
+            >Si
+            <input type="radio" name="sel-pais" id="colombia-yes" value="si" />
+          </label>
+
+          <label for="colombia-no"
+            >No
+            <input type="radio" name="sel-pais" id="colombia-no" value="no" />
+          </label>
+        </fieldset>
+        <!-- CONDICIONAL selección PAIS-->
+        <input
+          type="text"
+          name="PaisNoCol"
+          cf-questions="¿Cual es tu país de nacimiento?"
+          cf-conditional-sel-pais="no"
+          id="PaisNoCol"
+        />
+
+        <!-- Evaluar poner Validación de Fecha -->
+
+        <!-- INI Datos de Documento -->
+      </div>
+      <fieldset>
+        <label for="tipoDocumento">tipoDocumento</label>
+        <div class="radio">
+          <label>
+            <input
+              cf-questions="{Nombre}, ¿Cual es tu tipo de documento?"
+              type="radio"
+              name="tipoDocumento"
+              id="tipoDocumento-1"
+              value="CC"
+            />
+            Cedula de Ciudadania
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input
+              type="radio"
+              name="tipoDocumento"
+              id="tipoDocumento-2"
+              value="CE"
+            />
+            Cedula Extranjeria
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input
+              type="radio"
+              name="tipoDocumento"
+              id="tipoDocumento-3"
+              value="PA"
+            />
+            Pasaporte
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input
+              type="radio"
+              name="tipoDocumento"
+              id="tipoDocumento-2"
+              value="TI"
+            />
+            Tarjeta de Identidad
+          </label>
+        </div>
+      </fieldset>
+      <input
+        cf-questions="¿Cual es tu numero de documento?"
+        type="number"
+        class="form-control"
+        name="numDocumento"
+        id="numDocumento"
+        min="100"
+        max="9999999999"
+        cf-error="Debes ingresar un número válido"
+      />
+      <input
+        cf-questions="¿Cuál es la fecha de Expedición de tu documento?"
+        type="date"
+        class="form-control"
+        name="fechaExpedicion"
+        id="fechaExpedicion"
+      />
+      <!-- Evaluar poner Validación de Fecha -->
+
+      <!-- FIN Datos de Documento -->
+
+      <!-- INI Datos BENEFICIARIO ONEROSO-->
+      <div class="seccion-beneficiario">
+        <cf-robot-message
+          cf-questions="Una de las ventajas de esta póliza es que puedes adicionar un beneficiario adicional al Banco"
+        ></cf-robot-message>
+        <cf-robot-message
+          cf-questions="Se le llama Beneficiaro No Oneroso o a Título Gratuito"
+        ></cf-robot-message>
+        <cf-robot-message
+          cf-questions="Son designados libremente y a voluntad del Asegurado/a, normalmente serán el Cónyuge, Hijos/as, Padres, Hermanos/as, etc."
+        ></cf-robot-message>
+        <cf-robot-message
+          cf-questions="Es un beneficario que aparecerá como adicional al banco en tu póliza, en caso de que al momento de un siniestro la deuda sea menor al valor asegurado, esta persona sería el beneficiario del excedente!"
+        ></cf-robot-message>
+        <cf-robot-message
+          cf-questions="Si deseas agregar el beneficiario, ten en cuenta que debes saber su numero de cedula "
+        ></cf-robot-message>
+        <fieldset cf-questions="¿Quieres agregar un beneficiario?">
+          <label for="beneficiario-yes"
+            >Si
+            <input
+              type="radio"
+              name="sel-beneficiario"
+              id="beneficiario-yes"
+              value="si"
+            />
+          </label>
+
+          <label for="beneficiario-no"
+            >No
+            <input
+              type="radio"
+              name="sel-beneficiario"
+              id="beneficiario-no"
+              value="no"
+            />
+          </label>
+        </fieldset>
+        <input
+          type="text"
+          name="NombreBeneficiario"
+          cf-questions="¿Cual es el nombre y apellido del Beneficiario que vas a agregar?"
+          cf-conditional-sel-beneficiario="si"
+          id="NombreBeneficiario"
+        />
+        <input
+          type="text"
+          name="ParentescoBeneficiario"
+          cf-questions="¿Cual es parentesco del Beneficiario contigo?"
+          cf-conditional-sel-beneficiario="si"
+          id="ParentescoBeneficiario"
+        />
+        <fieldset>
+          <label for="tipoDocumentoBeneficiario"
+            >Tipo Documento Beneficiario</label
+          >
+          <div class="radio">
+            <label>
+              <input
+                cf-questions="¿Cual es el tipo de documento del beneficiario?"
+                cf-conditional-sel-beneficiario="si"
+                type="radio"
+                name="tipoDocumentoBeneficiario"
+                id="tipoDocumentoBeneficiario-1"
+                value="CC"
+              />
+              Cedula de Ciudadania
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input
+                cf-conditional-sel-beneficiario="si"
+                type="radio"
+                name="tipoDocumentoBeneficiario"
+                id="tipoDocumentoBeneficiario-2"
+                value="CE"
+              />
+              Cedula Extranjeria
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input
+                cf-conditional-sel-beneficiario="si"
+                type="radio"
+                name="tipoDocumentoBeneficiario"
+                id="tipoDocumentoBeneficiario-3"
+                value="PA"
+              />
+              Pasaporte
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input
+                cf-conditional-sel-beneficiario="si"
+                type="radio"
+                name="tipoDocumentoBeneficiario"
+                id="tipoDocumentoBeneficiario-4"
+                value="TI"
+              />
+              Tarjeta de Identidad
+            </label>
+          </div>
+        </fieldset>
+
+        <input
+          cf-questions="¿Cual es tu numero de documento del Beneficiario?"
+          cf-conditional-sel-beneficiario="si"
+          type="number"
+          class="form-control"
+          name="numDocumentoBeneficiario"
+          id="numDocumentoBeneficiario"
+          min="100"
+          max="9999999999"
+          cf-error="Debes ingresar un número válido"
+        />
+        <input
+          type="text"
+          name="PaisNacimientoBeneficiario"
+          cf-questions="¿Cual es el país de Nacimiento del Beneficiario?"
+          cf-conditional-sel-beneficiario="si"
+          id="PaisNacimientoBeneficiario"
+        />
+      </div>
+      <!--Datos del Estado Civil, Vivienda y Actividad-->
+      <div class="seccion-viv"></div>
+      <cf-robot-message
+        cf-questions="{Nombre}, gracias por la información! Agregaremos a {NombreBeneficiario} como beneficiario en tu Póliza"
+        cf-conditional-sel-beneficiario="si"
+      ></cf-robot-message>
+
+      <cf-robot-message
+        cf-questions="Ahora debemos hacerte unas preguntas sobre tu entorno, vivienda y actividad"
+      ></cf-robot-message>
+      <fieldset>
+        <div class="radio">
+          <label>
+            <input
+              cf-questions="¿Cual es tu Estado Civil?"
+              type="radio"
+              name="EstadoCivil"
+              id="EstadoCivil-1"
+              value="Cas"
+            />
+            Casado/a
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input
+              type="radio"
+              name="EstadoCivil"
+              id="EstadoCivil-2"
+              value="Sol"
+            />
+            Soltera/a
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input
+              type="radio"
+              name="EstadoCivil"
+              id="EstadoCivil-3"
+              value="Sep"
+            />
+            Separado/a
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input
+              type="radio"
+              name="EstadoCivil"
+              id="EstadoCivil-4"
+              value="Viu"
+            />
+            Viudo/a
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input
+              type="radio"
+              name="EstadoCivil"
+              id="EstadoCivil-5"
+              value="Uni"
+            />
+            Unión Libre
+          </label>
+        </div>
+      </fieldset>
+
+      <input
+        cf-questions="¿Cual es el estrato de tu vivienda?"
+        type="number"
+        class="form-control"
+        name="Estrato"
+        id="Estrato"
+        min="1"
+        max="6"
+        cf-error="Debes indicar un número del 1 al 6"
+      />
+
+      <input
+        cf-questions="¿Cuál es tu ciudad de residencia?"
+        type="text"
+        name="ciudad"
+        id="ciudad"
+      />
+
+      <input
+        cf-questions="Por favor escribe la dirección de tu residencia. Ejemplo: Cra 7 #67-65. Torre 2 Apto 906"
+        type="text"
+        name="dirección"
+        id="dirección"
+      />
+
+      <fieldset cf-questions="¿Tienes Vehículo Propioa?">
+        <label for="vehiculo-yes"
+          >Si
+          <input
+            type="radio"
+            name="sel-vehiculo"
+            id="vehiculo-yes"
+            value="si"
+          />
+        </label>
+
+        <label for="vehiculo-no"
+          >No
+          <input type="radio" name="sel-vehiculo" id="vehiculo-no" value="no" />
+        </label>
+      </fieldset>
+
+      <fieldset
+        cf-questions="¿Tienes personas que dependan económicamente de ti? (Hijos, otros familiares)"
+      >
+        <label for="dependientes-yes"
+          >Si
+          <input
+            type="radio"
+            name="sel-dependientes"
+            id="dependientes-yes"
+            value="si"
+          />
+        </label>
+
+        <label for="dependientes-no"
+          >No
+          <input
+            type="radio"
+            name="sel-dependientes"
+            id="dependientes-no"
+            value="no"
+          />
+        </label>
+      </fieldset>
+
+      <input
+        cf-questions="¿Cuantas personas dependen de ti?"
+        cf-conditional-sel-dependientes="si"
+        min="0"
+        max="10"
+        cf-error="Ingresa un número entre 1 y 10"
+        type="number"
+        class="form-control"
+        name="numdependientes"
+        id="numdependientes"
+      />
+
+      <fieldset>
+        <div class="radio">
+          <label>
+            <input
+              cf-questions="¿Cual es tu actividad económica principal?"
+              type="radio"
+              name="ActividadEconomica"
+              id="ActividadEconomica-1"
+              value="Empleado-Asalariado"
+            />
+            Empleado-Asalariado
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input
+              type="radio"
+              name="ActividadEconomica"
+              id="ActividadEconomica-2"
+              value="Jubilado-Pensionado"
+            />
+            Jubilado-Pensionado
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input
+              type="radio"
+              name="ActividadEconomica"
+              id="EstadActividadEconomicaoCivil-3"
+              value="Propietario"
+            />
+            Propietario-Socio
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input
+              type="radio"
+              name="ActividadEconomica"
+              id="ActividadEconomica-4"
+              value="Inversionista"
+            />
+            Inversionista-Rentista
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input
+              type="radio"
+              name="ActividadEconomica"
+              id="ActividadEconomica-5"
+              value="Independiente"
+            />
+            Independiente
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input
+              type="radio"
+              name="ActividadEconomica"
+              id="ActividadEconomica-6"
+              value="Estudiante"
+            />
+            Estudiante
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input
+              type="radio"
+              name="ActividadEconomica"
+              id="ActividadEconomica-7"
+              value="Hogar"
+            />
+            Hogar
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input
+              type="radio"
+              name="ActividadEconomica"
+              id="ActividadEconomica-7"
+              value="Otros"
+            />
+            Otros
+          </label>
+        </div>
+      </fieldset>
+
+      <input
+        cf-questions="¿Cómo se llama la empresa donde trabajas?"
+        cf-conditional-ActividadEconomica="Empleado-Asalariado"
+        type="text"
+        class="form-control"
+        name="empresa"
+        id="empresa"
+      />
+      <input
+        cf-questions="¿Cuál es la ciudad de tu trabajo o empresa?"
+        cf-conditional-ActividadEconomica="Empleado-Asalariado"
+        cf-conditional-ActividadEconomica="Independiente"
+        type="text"
+        class="form-control"
+        name="ciudadEmpresa"
+        id="ciudadEmpresa"
+      />
+      <input
+        cf-questions="¿Cuál es la dirección de tu trabajo o empresa?"
+        cf-conditional-ActividadEconomica="Empleado-Asalariado"
+        cf-conditional-ActividadEconomica="Independiente"
+        type="text"
+        class="form-control"
+        name="direccionEmpresa"
+        id="direccionEmpresa"
+      />
+
+      <input
+        cf-questions="¿Cuál es tu profesión? Se refiere al empleo o trabajo que alguien ejerce y por el que recibe una retribución económica. (Ejemplo: Médico)"
+        cf-conditional-ActividadEconomica="Empleado-Asalariado"
+        cf-conditional-ActividadEconomica="Independiente"
+        type="text"
+        class="form-control"
+        name="direccionEmpresa"
+        id="direccionEmpresa"
+      />
+      <input
+        cf-questions="¿Cuál es tu ocupación / Cargo / Oficio? La ocupación hace referencia a lo que una persona se dedica; a su trabajo, empleo o actividad. (Ejemplo: Médico general)"
+        cf-conditional-ActividadEconomica="Empleado-Asalariado"
+        cf-conditional-ActividadEconomica="Independiente"
+        type="text"
+        class="form-control"
+        name="direccionEmpresa"
+        id="direccionEmpresa"
+      />
+
+      <fieldset cf-questions="¿Manejas Recursos Públicos?">
+        <label for="recursos-yes"
+          >Si
+          <input
+            type="radio"
+            name="sel-recursos"
+            id="recursos-yes"
+            value="si"
+          />
+        </label>
+
+        <label for="recursos-no"
+          >No
+          <input type="radio" name="sel-recursos" id="recursos-no" value="no" />
+        </label>
+      </fieldset>
+
+      <input
+        cf-questions="Por favor cuéntanos qué tipo de recursos y detalles que puedan ser relevantes"
+        cf-conditional-sel-recursos="si"
+        type="text"
+        class="form-control"
+        name="detalleRecursos"
+        id="detalleRecursos"
+      />
+
+      <fieldset cf-questions="¿Posees algún tipo de Poder Político?">
+        <label for="politico-yes"
+          >Si
+          <input
+            type="radio"
+            name="sel-politico"
+            id="politico-yes"
+            value="si"
+          />
+        </label>
+
+        <label for="politico-no"
+          >No
+          <input type="radio" name="sel-politico" id="politico-no" value="no" />
+        </label>
+      </fieldset>
+
+      <input
+        cf-questions="Por favor cuéntanos qué grado de poder público y detalles que puedan ser relevantes"
+        cf-conditional-sel-politico="si"
+        type="text"
+        class="form-control"
+        name="detallePep"
+        id="detallePep"
+      />
+
+      <fieldset cf-questions="¿Haces transacciones en monedas extranjeras?">
+        <label for="transacciones-yes"
+          >Si
+          <input
+            type="radio"
+            name="sel-transacciones"
+            id="transacciones-yes"
+            value="si"
+          />
+        </label>
+
+        <label for="transacciones-no"
+          >No
+          <input
+            type="radio"
+            name="sel-transacciones"
+            id="transacciones-no"
+            value="no"
+          />
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <input
+          type="checkbox"
+          cf-conditional-sel-transacciones="si"
+          cf-label="Exportaciones"
+          name="checkbox"
+        />
+        <input
+          type="checkbox"
+          cf-conditional-sel-transacciones="si"
+          cf-label="Importaciones"
+          name="checkbox"
+        />
+        <input
+          type="checkbox"
+          cf-conditional-sel-transacciones="si"
+          cf-label="Préstamos en moneda extranjera"
+          name="checkbox"
+        />
+        <input
+          type="checkbox"
+          cf-conditional-sel-transacciones="si"
+          cf-label="Pago de Servicios"
+          name="checkbox"
+        />
+        <input
+          type="checkbox"
+          cf-conditional-sel-transacciones="si"
+          cf-label="Transferencias"
+          name="checkbox"
+        />
+        <input
+          type="checkbox"
+          cf-conditional-sel-transacciones="si"
+          cf-label="Inversiones"
+          name="checkbox"
+        />
+        <input
+          type="checkbox"
+          cf-conditional-sel-transacciones="si"
+          cf-label="Otras"
+          name="checkbox"
+        />
+      </fieldset>
+
+      <input
+        cf-questions="Describe las transacciones que realizas"
+        type="text"
+        cf-conditional-sel-transacciones="si"
+        name="descripcioTransacciones"
+      />
+
+      <fieldset cf-questions="¿Tienes Cuentas Corrientes en Moneda Extranjera?">
+        <label for="cuenta-yes"
+          >Si
+          <input type="radio" name="sel-cuenta" id="cuenta-yes" value="si" />
+        </label>
+
+        <label for="cuenta-no"
+          >No
+          <input type="radio" name="sel-cuenta" id="cuenta-no" value="no" />
+        </label>
+      </fieldset>
+
+      <input
+        cf-questions="Por favor detallar: Número de cuenta, banco, ciudad, país, monto, moneda Ej: 12365493321, Bank of America Miami, Estados Unidos, 5.000, dólares"
+        cf-conditional-sel-cuenta="si"
+        type="text"
+      />
+
+      <!--Comienza información Patrimonial-->
+
+      <cf-robot-message
+        cf-questions="Muchas gracias {Nombre}, Ya nos quedan las últimas preguntas"
+      ></cf-robot-message>
+      <cf-robot-message
+        cf-questions="Vamos a preguntarte una información financiera, que es necesaria para las validaciones que realiza SURA"
+      ></cf-robot-message>
+      <cf-robot-message
+        cf-questions="Esta información debe ser lo más cercano a la realidad, ya que es información que se puede validar con información interna"
+      ></cf-robot-message>
+
+      <fieldset cf-questions="¿Comenzamos?">
+        <label for="patrimonio-si"
+          >Adelante
+          <input
+            type="radio"
+            name="sel-patrimonio"
+            id="patrimonio-si"
+            value="si"
+          />
+        </label>
+      </fieldset>
+
+      <input
+        cf-questions="¿Cuántos son tus ingresos mensuales? Incluye el promedio de ingresos mensuales. Esto puede incluir: salario, rentas, etc."
+        type="number"
+        name="Ingresos"
+        id="Ingresos"
+        min="100000"
+      />
+
+      <input
+        cf-questions="¿Cuántos son tus egresos (gastos) mensuales? Escribe el promedio de gastos que sueles tener mes a mes. Ej: Arriendo, servicios, alimentación, transporte, pago de cuotas, etc."
+        type="number"
+        name="Gastos"
+        id="Gastos"
+        min="100000"
+      />
+
+      <input
+        cf-questions="¿Cuánto es el valor de tus activos o posesiones? Los activos son el conjunto de productos, bienes, o recursos que posees. Ej: Casa, apartamento, vehículo, electrodomésticos, joyas, etc."
+        type="number"
+        name="Activos"
+        id="Activos"
+        min="100000"
+      />
+      <input
+        cf-questions="¿Cuánto es el valor de tus pasivos o deudas? Los pasivos incluyen las deudas y obligaciones pendientes de pago. Ej: los préstamos bancarios."
+        type="number"
+        name="Deudas"
+        id="Deudas"
+        min="100000"
+      />
+
+      <fieldset
+        cf-questions="¿Cuál es el origen de tus recursos? Puedes elegir todas las opciones que apliquen en tu caso"
+      >
+        <input
+          type="checkbox"
+          name="origenRecursos"
+          cf-label="Actividad Económica"
+        />
+        <input type="checkbox" name="origenRecursos" cf-label="Dividendos" />
+        <input type="checkbox" name="origenRecursos" cf-label="Rentas" />
+        <input type="checkbox" name="origenRecursos" cf-label="Herencia" />
+        <input type="checkbox" name="origenRecursos" cf-label="Otros" />
+      </fieldset>
+
+      <cf-robot-message
+        cf-questions="¿Eres una Persona Expuesta Políticamente (PEP)?"
+      >
+      </cf-robot-message>
+
+      <fieldset
+        cf-questions="Se denomina así a las personas que ocupan u ocuparon cargos o funciones públicas relevantes y/o a los que tienen algún grado de conexión con esas personas (familiar, social o profesional)."
+      >
+        <label for="pep-yes"
+          >Si
+          <input type="radio" name="sel-pep" id="pep-yes" value="si" />
+        </label>
+
+        <label for="pep-no"
+          >No
+          <input type="radio" name="sel-pep" id="pep-no" value="no" />
+        </label>
+      </fieldset>
+
+      <fieldset
+        cf-questions="¿Qué tipo de Persona Expuesta Políticamente?"
+        cf-conditional-sel-pep="si"
+      >
+        <input
+          type="checkbox"
+          name="tipoPep"
+          cf-label="PEP Nacional"
+          cf-conditional-sel-pep="si"
+        />
+        <input
+          type="checkbox"
+          name="tipoPep"
+          cf-label="PEP Extranjero"
+          cf-conditional-sel-pep="si"
+        />
+        <input
+          type="checkbox"
+          name="tipoPep"
+          cf-label="PEP Organización Internacional"
+          cf-conditional-sel-pep="si"
+        />
+        <input
+          type="checkbox"
+          name="tipoPep"
+          cf-label="PEP por Relación"
+          cf-conditional-sel-pep="si"
+        />
+      </fieldset>
+
+      <fieldset
+        cf-questions="¿Eres Ciudadano o Residente Legal de los Estados Unidos de América?"
+      >
+        <label for="usa-yes"
+          >Si
+          <input type="radio" name="sel-usa" id="usa-yes" value="si" />
+        </label>
+
+        <label for="usa-no"
+          >No
+          <input type="radio" name="sel-usa" id="usa-no" value="no" />
+        </label>
+      </fieldset>
+
+      <fieldset
+        cf-questions="¿Has estado físicamente presente en Estados Unidos al menos 183 dias consecutivos durante el último año?"
+      >
+        <label for="perusa-yes"
+          >Si
+          <input type="radio" name="sel-perusa" id="perusa-yes" value="si" />
+        </label>
+
+        <label for="perusa-no"
+          >No
+          <input type="radio" name="sel-perusa" id="perusa-no" value="no" />
+        </label>
+      </fieldset>
+
+      <fieldset
+        cf-questions="¿Eres residente Fiscal de una jurisdicción diferente a Colombia o los Estados Unidos?"
+      >
+        <label for="fiscal-yes"
+          >Si
+          <input type="radio" name="sel-fiscal" id="fiscal-yes" value="si" />
+        </label>
+
+        <label for="fiscal-no"
+          >No
+          <input type="radio" name="sel-fiscal" id="fiscal-no" value="no" />
+        </label>
+      </fieldset>
+
+      <cf-message-robot cf-questions="¡Hemos finalizado!"></cf-message-robot>
+      <cf-message-robot
+        cf-questions="Antes de irte te contamos que los datos aqui entegados será usados únicamente para diligenciar el formulario de conocimiento del cliente requerido para expedir tu póliza"
+      ></cf-message-robot>
+      <cf-message-robot
+        cf-questions="Al aceptar, nos autorizas (NUBLOQ SAS NIT 901.493.408-4) para usarlos SOLO con este propósito"
+      ></cf-message-robot>
+      <cf-message-robot
+        cf-questions="Tus derechos y los mecanismos para su ejercicio se encuentran previstos en
+https://nubloq.co/legal/politica-de-tratamiento-de-datos/."
+      ></cf-message-robot>
+
+      <fieldset cf-questions="">
+        <label for="aceptatyc-si"
+          >Finalizar
+          <input type="radio" name="aceptatyc" id="aceptatyc" value="si" />
+        </label>
+      </fieldset>
+
+      <!-- FIN-->
+
+      <!--hito HASTA AQUI LLEGUE EL DIA DE HOY
+      VOY A HACER UN BREAK 
+    
+    ** PREGUNTAS DE PATRIMONIO
+
+  -->
+      <!--hito HASTA AQUI LLEGUE EL DIA DE HOY
+      VOY A HACER UN BREAK -->
+
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    
+    <div id="cf-context" class="dark-theme" role="cf-context" cf-context></div>
+    <!-- partial -->
+    <script src="https://cdn.jsdelivr.net/gh/space10-community/conversational-form@latest/dist/conversational-form.min.js"></script>
+    <script src="src/script.js"></script>
+  </body>
+</html>
